@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 
 const App: FunctionComponent = () => {
-  return <div>Application Base</div>;
+  return <div className="App"></div>;
 };
 
 export default App;
