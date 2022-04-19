@@ -12,6 +12,10 @@
     "dev:frontend": "cd ./frontend && webpack serve",
     "dev:backend": "cd ./backend && nodemon ./src/server.ts --watch"
   },
+  "targets": {
+    "frontend": {},
+    "backend": {}
+  },
   "dependencies": {
     "@types/express": "^4.17.13",
     "concurrently": "^7.1.0",
