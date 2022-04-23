@@ -1,5 +1,4 @@
-import { AnimatePresence } from "framer-motion";
-import { createRef, FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import Navbar from "./components/navbar/Navbar";
 
 const App: FunctionComponent = () => {
