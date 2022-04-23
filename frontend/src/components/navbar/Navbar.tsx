@@ -21,45 +21,43 @@ const Navbar: FunctionComponent = () => {
   }, [isMobile]);
 
   return (
-    <div ref={navRef} className="fixed z-50 w-full bg-white">
-      <div className="w-full relative">
-        <div
-          id="navbar"
-          className="bg-white max-w-screen-lg mx-auto px-5 py-2 min-h-[50px] flex flex-col justify-between items-center transition-all"
-        >
-          <div className="flex flex-row w-full justify-between items-center">
-            <AnimatePresence>
-              {!open && <NavLogo />}
-              {isMobile && !open && (
-                <motion.div
-                  key="navbar-toggle"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                >
-                  <ToggleNavbar state={open} toggle={() => setOpen(!open)} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-        <AnimatePresence>
-          {isMobile && open && (
-            <motion.div
-              key="navbar-popover"
-              className="origin-top-right bg-white rounded-lg absolute flex flex-col top-0 inset-x-0 z-[51] m-5 p-5"
-              initial={{ translateY: -50, opacity: 0 }}
-              animate={{ translateY: 0, opacity: 1 }}
-              exit={{ translateY: 25, opacity: 0 }}
-            >
-              <div className="flex flex-row w-full justify-between items-center">
-                <NavLogo />
+    <div ref={navRef} className="relative w-full bg-white">
+      <div
+        id="navbar"
+        className="bg-white max-w-screen-lg mx-auto px-5 py-2 min-h-[50px] flex flex-col justify-between items-center transition-all"
+      >
+        <div className="flex flex-row w-full justify-between items-center">
+          <AnimatePresence>
+            {!open && <NavLogo />}
+            {isMobile && !open && (
+              <motion.div
+                key="navbar-toggle"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+              >
                 <ToggleNavbar state={open} toggle={() => setOpen(!open)} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
+      <AnimatePresence>
+        {isMobile && open && (
+          <motion.div
+            key="navbar-popover"
+            className="origin-top-right bg-white rounded-lg absolute flex flex-col top-0 inset-x-0 z-[51] m-5 p-5"
+            initial={{ translateY: -50, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
+            exit={{ translateY: 25, opacity: 0 }}
+          >
+            <div className="flex flex-row w-full justify-between items-center">
+              <NavLogo />
+              <ToggleNavbar state={open} toggle={() => setOpen(!open)} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -86,9 +84,4 @@ const ToggleNavbar: FunctionComponent<{
   );
 };
 
-export default () =>
-  createPortal(
-    <Navbar />,
-    document.getElementById("root") || document.body,
-    "navbar"
-  );
+export default Navbar;
