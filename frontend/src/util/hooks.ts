@@ -31,27 +31,36 @@ export enum ScreenSizes {
 }
 
 export const useScreenSize = () => {
-  const [screenSize, setScreenSize] = useState(ScreenSizes.sm);
+  const getScreenSize = (): ScreenSizes => {
+    if (typeof window === "undefined") return ScreenSizes.xs;
+
+    const width = window.innerWidth;
+    if (width < 640) {
+      return ScreenSizes.xs;
+    } else if (width < 768) {
+      return ScreenSizes.sm;
+    } else if (width < 1024) {
+      return ScreenSizes.md;
+    } else if (width < 1280) {
+      return ScreenSizes.lg;
+    } else if (width < 1536) {
+      return ScreenSizes.xl;
+    } else {
+      return ScreenSizes["2xl"];
+    }
+  };
+
+  const [screenSize, setScreenSize] = useState(getScreenSize());
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     const onResize = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setScreenSize(ScreenSizes.xs);
-      } else if (width < 768) {
-        setScreenSize(ScreenSizes.sm);
-      } else if (width < 1024) {
-        setScreenSize(ScreenSizes.md);
-      } else if (width < 1280) {
-        setScreenSize(ScreenSizes.lg);
-      } else if (width < 1536) {
-        setScreenSize(ScreenSizes.xl);
-      } else {
-        setScreenSize(ScreenSizes["2xl"]);
-      }
+      setScreenSize(getScreenSize());
     };
+
     onResize();
+
     window.addEventListener("resize", onResize);
   }, []);
 
