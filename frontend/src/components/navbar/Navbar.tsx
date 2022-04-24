@@ -46,7 +46,7 @@ const Navbar: FunctionComponent = () => {
         {isMobile && open && (
           <motion.div
             key="navbar-popover"
-            className="absolute inset-x-0 top-0 z-[51] m-5 flex origin-top-right flex-col rounded-lg bg-white p-5"
+            className="absolute inset-x-0 top-0 z-[51] m-5 flex origin-top-right flex-col rounded-lg bg-white p-5 shadow-lg shadow-gray-500"
             initial={{ translateY: -50, opacity: 0 }}
             animate={{ translateY: 0, opacity: 1 }}
             exit={{ translateY: 25, opacity: 0 }}
