@@ -18,7 +18,6 @@ const Navbar: FunctionComponent = () => {
     if (!isMobile) {
       setOpen(false);
     }
-    console.log(isMobile);
   }, [isMobile]);
 
   return (
