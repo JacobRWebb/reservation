@@ -51,7 +51,7 @@ export const useScreenSize = () => {
         setScreenSize(ScreenSizes["2xl"]);
       }
     };
-
+    onResize();
     window.addEventListener("resize", onResize);
   }, []);
 
