@@ -27,7 +27,7 @@ const Navbar: FunctionComponent = () => {
     <div ref={navRef} className="relative z-50 w-full bg-white">
       <div
         id="navbar"
-        className="mx-auto flex min-h-[50px] max-w-screen-lg flex-col items-center justify-between bg-white px-5 py-2 transition-all"
+        className="mx-auto flex max-w-screen-lg flex-col items-center justify-between bg-white px-5 py-2 transition-all"
       >
         <NavbarHeader open={open} toggle={() => setOpen(!open)} />
       </div>
