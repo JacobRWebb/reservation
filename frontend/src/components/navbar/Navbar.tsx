@@ -4,6 +4,9 @@ import { createPortal } from "react-dom";
 import { screenSizeOnly } from "../../util/helper";
 import { onClickOutSideRef, ScreenSizes } from "../../util/hooks";
 import { TiMinus, TiThMenu } from "react-icons/ti";
+import NavLogo from "./NavLogo";
+import ToggleNavbar from "./NavbarToggle";
+import NavbarHeader from "./NavbarHeader";
 
 const Navbar: FunctionComponent = () => {
   const navRef = createRef<HTMLDivElement>();
@@ -26,21 +29,7 @@ const Navbar: FunctionComponent = () => {
         id="navbar"
         className="mx-auto flex min-h-[50px] max-w-screen-lg flex-col items-center justify-between bg-white px-5 py-2 transition-all"
       >
-        <div className="flex w-full flex-row items-center justify-between">
-          <AnimatePresence initial={false}>
-            {!open && <NavLogo />}
-            {isMobile && !open && (
-              <motion.div
-                key="navbar-toggle"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
-              >
-                <ToggleNavbar state={open} toggle={() => setOpen(!open)} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <NavbarHeader open={open} toggle={() => setOpen(!open)} />
       </div>
       <AnimatePresence>
         {isMobile && open && (
@@ -51,36 +40,15 @@ const Navbar: FunctionComponent = () => {
             animate={{ translateY: 0, opacity: 1 }}
             exit={{ translateY: 25, opacity: 0 }}
           >
-            <div className="flex w-full flex-row items-center justify-between">
-              <NavLogo />
-              <ToggleNavbar state={open} toggle={() => setOpen(!open)} />
-            </div>
+            <NavbarHeader
+              popover={true}
+              open={open}
+              toggle={() => setOpen(!open)}
+            />
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
-};
-
-const NavLogo: FunctionComponent = () => {
-  return (
-    <h1 key="navbar-logo" className="text-2xl font-medium text-gray-800">
-      Xodius
-    </h1>
-  );
-};
-
-const ToggleNavbar: FunctionComponent<{
-  state: boolean;
-  toggle: () => void;
-}> = ({ state, toggle }) => {
-  return (
-    <button
-      onClick={() => toggle()}
-      className="rounded bg-black px-2 py-1 text-white"
-    >
-      {state ? <TiMinus /> : <TiThMenu />}
-    </button>
   );
 };
 
